@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'myblog'  # обязательно при использовании namespace в include()
+app_name = 'blog'  # обязательно при использовании namespace в include()
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),  # это главная страница блога
