@@ -16,4 +16,4 @@ def post_detail(request, id):
    return render(request,
                     'myblog/post/detail.html',
                     {'post': post})
-# Create your views here.
+
