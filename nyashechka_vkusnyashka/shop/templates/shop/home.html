@@ -1,0 +1,91 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Няшечка Вкусняшечка{% endblock %}
+
+{% block content %}
+<div class="welcome-message">Добро пожаловать в мир вкусняшек!</div>
+
+<div class="widget">
+    <h3>Новинки</h3>
+    <ol class="product-grid">
+        {% for item in new_products %}
+            <li class="product-card">
+                <div class="image-container">
+                    {% if item.product.id == 1 %}
+                        <img src="{% static 'images/products/1.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 2 %}
+                        <img src="{% static 'images/products/2.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 3 %}
+                        <img src="{% static 'images/products/3.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 4 %}
+                        <img src="{% static 'images/products/4.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 5 %}
+                        <img src="{% static 'images/products/5.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 6 %}
+                        <img src="{% static 'images/products/6.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 7 %}
+                        <img src="{% static 'images/products/7.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 8 %}
+                        <img src="{% static 'images/products/8.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 9 %}
+                        <img src="{% static 'images/products/9.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% elif item.product.id == 10 %}
+                        <img src="{% static 'images/products/10.jpg' %}" alt="{{ item.product.name }}" class="item-image">
+                    {% else %}
+                        <img src="{% static 'images/logo.png' %}" alt="Нет изображения" class="item-image">
+                    {% endif %}
+                    {% if item.is_new %}
+                        <span class="product-tag">Новинка</span>
+                    {% endif %}
+                </div>
+                <div class="item-info">
+                    <a href="{% url 'shop:product_detail' item.product.id %}">
+                        <strong>{{ item.product.name }}</strong>
+                    </a>
+                    <p>Цена: {{ item.product.price }} ₽</p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'shop:add_to_cart' item.product.id %}" class="cart-btn">
+                            {% if item.in_cart %}Убрать из корзины{% else %}В корзину{% endif %}
+                        </a>
+                    {% else %}
+                        <button class="cart-btn" disabled>В корзину</button>
+                    {% endif %}
+                </div>
+            </li>
+        {% empty %}
+            <li>Пока нет новинок.</li>
+        {% endfor %}
+    </ol>
+</div>
+
+<div class="widget">
+    <h3>Акции</h3>
+    <ol class="promotion-grid">
+        {% for promotion in active_promotions %}
+            <li class="promotion-card">
+                <strong>{{ promotion.title }}</strong>
+                <p>{{ promotion.description }}</p>
+                <p>{{ promotion.start_date }} - {{ promotion.end_date }}</p>
+            </li>
+        {% empty %}
+            <li>Пока нет акций.</li>
+        {% endfor %}
+    </ol>
+    <a href="{% url 'shop:promotions' %}" class="action-btn">Все акции</a>
+</div>
+
+<div class="widget">
+    <h3>Топ категории</h3>
+    <ol class="category-grid">
+        {% for category in top_categories %}
+            <li class="category-card">
+                <a href="{% url 'shop:catalog' %}?category={{ category.id }}">{{ category.name }}</a>
+            </li>
+        {% empty %}
+            <li>Пока нет категорий.</li>
+        {% endfor %}
+    </ol>
+    <a href="{% url 'shop:catalog' %}" class="action-btn">Все категории</a>
+</div>
+{% endblock %}

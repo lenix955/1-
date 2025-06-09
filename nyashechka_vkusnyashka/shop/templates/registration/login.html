@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Вход — Няшечка Вкусняшечка{% endblock %}
+
+{% block content %}
+<div class="auth-form">
+    <h2>Вход</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+    <p>Нет аккаунта? <a href="{% url 'account_signup' %}">Зарегистрируйтесь</a></p>
+</div>
+{% endblock %}

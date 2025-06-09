@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Акции — Няшечка Вкусняшечка{% endblock %}
+
+{% block content %}
+<div class="welcome-message">Все акции!</div>
+
+<div class="widget">
+    <h3>Актуальные акции</h3>
+    <ol class="promotion-grid">
+        {% for promotion in active_promotions %}
+            <li class="promotion-card">
+                <strong>{{ promotion.title }}</strong>
+                <p>{{ promotion.description }}</p>
+                <p>{{ promotion.start_date }} - {{ promotion.end_date }}</p>
+            </li>
+        {% empty %}
+            <li>Пока нет актуальных акций.</li>
+        {% endfor %}
+    </ol>
+</div>
+
+<div class="widget">
+    <h3>Скоро будут</h3>
+    <ol class="promotion-grid">
+        {% for promotion in future_promotions %}
+            <li class="promotion-card">
+                <strong>{{ promotion.title }}</strong>
+                <p>{{ promotion.description }}</p>
+                <p>{{ promotion.start_date }} - {{ promotion.end_date }}</p>
+            </li>
+        {% empty %}
+            <li>Пока нет будущих акций.</li>
+        {% endfor %}
+    </ol>
+</div>
+
+<div class="widget">
+    <h3>Прошедшие акции</h3>
+    <ol class="promotion-grid">
+        {% for promotion in past_promotions %}
+            <li class="promotion-card">
+                <strong>{{ promotion.title }}</strong>
+                <p>{{ promotion.description }}</p>
+                <p>{{ promotion.start_date }} - {{ promotion.end_date }}</p>
+            </li>
+        {% empty %}
+            <li>Пока нет прошедших акций.</li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}

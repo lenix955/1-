@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Удалить {{ product.name }} — Няшечка Вкусняшечка{% endblock %}
+
+{% block content %}
+<div class="welcome-message">Удалить {{ product.name }}?</div>
+<div class="form-section">
+    <p>Вы уверены, что хотите удалить товар "{{ product.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="action-btn">Удалить</button>
+        <a href="{% url 'shop:catalog' %}" class="action-btn">Отмена</a>
+    </form>
+</div>
+{% endblock %}

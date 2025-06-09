@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} — Няшечка Вкусняшечка{% endblock %}
+
+{% block content %}
+<div class="welcome-message">{{ title }}</div>
+<div class="form-section">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="action-btn">Сохранить</button>
+    </form>
+</div>
+{% endblock %}
