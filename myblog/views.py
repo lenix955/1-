@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from .models import Post
-from django.http import Http404
+
 
 def post_list(request):
     posts = Post.published.all()
